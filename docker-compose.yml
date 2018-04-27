@@ -3,9 +3,9 @@ services:
   backend:
     image: dto80/se234-lab11-backend:latest
     ports:
-      - "8082:8080"
+      - "8086:8080"
   frontend:
-    image: dto80/se234-lab11-client:latest
+    image: tititity/se234-lab11-frontend:latest
     ports:
-      - "8081:80"
+      - "8085:80"
 

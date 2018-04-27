@@ -21,19 +21,22 @@ public class StudentServiceImpl implements StudentService {
                 return student;
             }
         }
-        return null;
+        throw new NoDataException();
     }
 
     @Override
     public List<Student> findStudentByPartOfId(String id) {
         List<Student> output = new ArrayList<>();
-        for (Student student: this.studentDao.findAll()
-                ) {
+        for (Student student: this.studentDao.findAll() ) {
             if (student.getStudentId().indexOf(id) != -1){
                 output.add(student);
             }
         }
-        return output;
+        if(output.size() == 0){
+            throw new SizeOfArrayException();
+        }else {
+            return output;
+        }
     }
 
     
@@ -45,6 +48,10 @@ public class StudentServiceImpl implements StudentService {
             total += student.getGpa();
 
         }
-        return total/this.studentDao.findAll().size();
+        if(this.studentDao.findAll().size()==0){
+            throw new ArithmeticException();
+        }else{
+            return total/this.studentDao.findAll().size();
+        }
     }
 }
